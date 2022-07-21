@@ -45,13 +45,13 @@ window.addEventListener(`DOMContentLoaded`,async () => {
     
     function showWeather(data) {
         const {name, main: {temp, temp_min, temp_max}, weather:[arr]} = data;
-
-        $body.style.backgroundImage = "url('cloudy.jfif')";
+        
+        
 
         const degrees = kelvinToCentigrade(temp);
         const minDegrees = kelvinToCentigrade(temp_min);
         const maxDegrees = kelvinToCentigrade(temp_max);
-
+        console.log(temp);
         const h5 = document.createElement("h5");
         const img = document.createElement("img");
         const h2 = document.createElement("h2");
@@ -69,6 +69,16 @@ window.addEventListener(`DOMContentLoaded`,async () => {
         $container.appendChild(h2);
         $container.appendChild(pMin);
         $container.appendChild(pMax);
+
+        if (degrees > 4 && degrees < 11) {
+            $body.style.backgroundImage = "url('../img/10.jpg')";
+        } else if (degrees > 10 && degrees < 31) {
+            $body.style.backgroundImage = "url('../img/20.jpg')";
+        } else if (degrees < 5) {
+            $body.style.backgroundImage = "url('../img/ice.jpg')";
+        } else if (degrees > 30) {
+            $body.style.backgroundImage = "url('../img/30.jpg')";
+        }
         
         // $template.querySelector("#cityName").textContent = name;
         // $template.querySelector('img').setAttribute('src', `https://openweathermap.org/img/wn/${arr.icon}@2x.png`)
